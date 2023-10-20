@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/index.css">
+    <link rel="stylesheet" href="src/App.css">
+    <link rel="stylesheet" href="harleys.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"><h1 id="greet">Merhaba ben</h1>
+      
+      <script type="text/javascript">
+        (function () {
+          var greet = ['Merhaba! ben','Hey! I am','Здарова! я', '¡Hola! Soy ', '你好！我的名字是','Salut! je m"appelle'],
+          i = 0;
+          setInterval(function(){ $('#greet').fadeOut(function(){
+              $(this).html(greet[(i = (i + 1) % greet.length)]).fadeIn();
+            }); }, 2357)
+        })();
+      </script><script type="module" src="/src/main.jsx"></script>
+    </div>
+    
+    <h1>Aldemir Eren Yildiz</h1>
+    <br>
+<div id="buttons">
+  <button class="jsbutton" id="btnNormal">Show All</button> 
+<button class="jsbutton" id="btnElementDark">Element Type: Dark</button>
+<button class="jsbutton" id="btnRemoveLowAtk">Discard Atk Lower Than 1000</button>
+<button class="jsbutton" id="btnRemoveLowDef">Discard Def Lower Than 1000</button>
+
+</div>
+<div class="card-grid">
+  <div class="card" id="atlantean">
+      <img src="/src/img/atlantean.jpg" alt="Card 1">
+  </div>
+  <div class="card" id="blueeyes">
+      <img src="/src/img/blueeye.jpg" alt="Card 2">
+  </div>
+  <div class="card" id="celt">
+    <img src="/src/img/celt.png" alt="Card 2">
+</div>
+<div class="card" id="Darkarm">
+  <img src="/src/img/darkarm.jpg" alt="Card 2">
+</div>
+<div class="card" id="darkmag">
+  <img src="/src/img/darkmag.jpg" alt="Card 2">
+</div>
+
+<div class="card" id="darkmagchaos">
+  <img src="/src/img/darkmagchaos.webp" alt="Card 2">
+</div>
+
+<div class="card" id="darkmaggirl">
+  <img src="/src/img/darkmaggirl.jpg" alt="Card 2">
+</div>
+
+<div class="card" id="exodia">
+  <img src="/src/img/exodia.webp" alt="Card 2">
+</div>
+
+<div class="card" id="judgement">
+  <img src="/src/img/judg.jpg" alt="Card 2">
+</div>
+
+<div class="card" id="mystic">
+  <img src="/src/img/mysti.jpg" alt="Card 2">
+</div>
+
+<div class="card" id="redeyes">
+  <img src="/src/img/redeyes.webp" alt="Card 2">
+</div>
+
+<div class="card" id="volcanic">
+  <img src="/src/img/volcroc.webp" alt="Card 2">
+</div>
+
+<script>
+// BTN EVENT FUNC CALLS AND  EVENT LISTENERS
+const btnNormal = document.getElementById('btnNormal');
+const btnElementDark = document.getElementById('btnElementDark');
+const btnRemoveLowAtk = document.getElementById('btnRemoveLowAtk');
+const btnRemoveLowDef = document.getElementById('btnRemoveLowDef');
+const cards = document.querySelectorAll('.card');
+
+//event listeners for card specs are here
+btnNormal.addEventListener('click', () => showAllCards());
+btnElementDark.addEventListener('click', () => filterCardsByElement('Dark'));
+btnRemoveLowAtk.addEventListener('click', () => removeCardsByStat('atk', 1000));
+btnRemoveLowDef.addEventListener('click', () => removeCardsByStat('def', 1000));
+
+
+// CARDS FILTERING FUNCTIONS
+
+function showAllCards() {
+  cards.forEach(card => {
+    card.style.display = 'block';
+  });
+}
+
+function filterCardsByElement(elementType) {
+  cards.forEach(card => {
+    const cardId = card.id.toLowerCase();
+    const cardElement = cardData[cardId].elementType.toLowerCase();
+    if (cardElement === elementType.toLowerCase()) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+
+function removeCardsByStat(statType, minValue) {
+  cards.forEach(card => {
+    const cardId = card.id.toLowerCase();
+    const cardStat = cardData[cardId][statType];
+    if (cardStat < minValue) {
+      card.style.display = 'none';
+    } else {
+      card.style.display = 'block';
+    }
+  });
+}
+
+// CARDS VALUES
+const cardData = {
+  
+  atlantean: {
+    elementType: 'Water',
+    atk: 1800,
+    def: 0,
+  },
+  
+  blueeyes: {
+    elementType: 'Light',
+    atk: 3000,
+    def: 2500,
+  },
+  
+  celt: {
+    elementType: 'Earth',
+    atk: 1400,
+    def: 1200,
+  },
+  
+  darkarm: {
+    elementType: 'Dark',
+    atk: 2800,
+    def: 1000,
+  },
+  
+  darkmag: {
+    elementType: 'Dark',
+    atk: 2500,
+    def: 2100,
+  },
+  
+  darkmagchaos: {
+    elementType: 'Dark',
+    atk: 2800,
+    def: 2600,
+  },
+  
+  darkmaggirl: {
+    elementType: 'Dark',
+    atk: 2000,
+    def: 1700,
+  },
+  
+  exodia: {
+    elementType: 'Dark',
+    atk: 1000,
+    def: 1000,
+  },
+  
+  judgement: {
+    elementType: 'Light',
+    atk: 3000,
+    def: 2600,
+  },
+  
+  mystic: {
+    elementType: 'Light',
+    atk: 800,
+    def: 2000,
+  },
+  
+  redeyes: {
+    elementType: 'Dark',
+    atk: 2400,
+    def: 2000,
+  },
+  
+  volcanic: {
+    elementType: 'Fire',
+    atk: 1900,
+    def: 1400,
+  },
+
+};
+console.log('Element Type: ' + blueEyesData.elementType);
+console.log('ATK: ' + blueEyesData.atk);
+console.log('DEF: ' + blueEyesData.def);
+</script>
+
+
+</body>
+
+</html>
